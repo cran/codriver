@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>Getting started</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Getting started</h1>
+
+
+
+<p>To use codriver you need access to a <strong>large language model
+(LLM) provider</strong> — a cloud service like OpenAI or Anthropic, a
+model running on your own machine, or a proxy provided by your
+organisation. Codriver supports a wide range of providers by building on
+the <a href="https://ellmer.tidyverse.org">ellmer package</a>. This
+article explains how to connect codriver to your provider. It assumes
+you already have access to one — meaning you have signed up, obtained an
+API key, or been given credentials by your organisation.</p>
+<hr />
+<div id="quick-start" class="section level2">
+<h2>Quick start</h2>
+<p>If you have an <strong>API key set and know your provider</strong>,
+this is all you need:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># OpenAI</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>codriver<span class="sc">::</span><span class="fu">codriver_configure</span>(<span class="st">&quot;openai&quot;</span>, <span class="at">model =</span> <span class="st">&quot;gpt-5.1&quot;</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="co"># Anthropic Claude</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>codriver<span class="sc">::</span><span class="fu">codriver_configure</span>(<span class="st">&quot;anthropic&quot;</span>, <span class="at">model =</span> <span class="st">&quot;claude-sonnet-4-5&quot;</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="co"># OpenAI-compatible endpoint</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>codriver<span class="sc">::</span><span class="fu">codriver_configure</span>(<span class="st">&quot;openai_compatible&quot;</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>  <span class="at">base_url =</span> <span class="st">&quot;https://llmproxy.example.com/v1&quot;</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>  <span class="at">model    =</span> <span class="st">&quot;gpt-4.1&quot;</span></span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>)</span></code></pre></div>
+<p>Any provider and argument supported by <a href="https://ellmer.tidyverse.org">ellmer</a> works. Read on if you
+need help with provider naming, authentication, or provider-specific
+notes.</p>
+<hr />
+</div>
+<div id="providers" class="section level2">
+<h2>Providers</h2>
+<p>Codriver does not communicate with LLM providers directly. Instead,
+it relies on <a href="https://ellmer.tidyverse.org"><strong>ellmer</strong></a>, a
+package that provides a unified interface to a wide range of providers.
+Ellmer supports many popular services — OpenAI, Anthropic Claude, Google
+Gemini, Mistral, Ollama, and more — and handles the details of
+authentication and communication for each one.</p>
+<p>When you call <code>codriver::codriver_configure()</code>, you tell
+codriver which provider to use by passing its <strong>name</strong> — a
+short string like <code>&quot;openai&quot;</code> or <code>&quot;anthropic&quot;</code>. Any
+argument accepted by the corresponding ellmer constructors can be passed
+directly through <code>codriver_configure()</code>.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Provider</th>
+<th><code>name</code></th>
+<th>Environment variable</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>OpenAI</td>
+<td><code>&quot;openai&quot;</code></td>
+<td><code>OPENAI_API_KEY</code></td>
+</tr>
+<tr class="even">
+<td>Anthropic</td>
+<td><code>&quot;anthropic&quot;</code></td>
+<td><code>ANTHROPIC_API_KEY</code></td>
+</tr>
+<tr class="odd">
+<td>Google Gemini</td>
+<td><code>&quot;google_gemini&quot;</code></td>
+<td><code>GEMINI_API_KEY</code></td>
+</tr>
+<tr class="even">
+<td>Azure OpenAI</td>
+<td><code>&quot;azure_openai&quot;</code></td>
+<td><code>AZURE_OPENAI_API_KEY</code></td>
+</tr>
+<tr class="odd">
+<td>AWS Bedrock</td>
+<td><code>&quot;aws_bedrock&quot;</code></td>
+<td><em>(IAM credentials)</em></td>
+</tr>
+<tr class="even">
+<td>Databricks</td>
+<td><code>&quot;databricks&quot;</code></td>
+<td><code>DATABRICKS_TOKEN</code></td>
+</tr>
+<tr class="odd">
+<td>Snowflake</td>
+<td><code>&quot;snowflake&quot;</code></td>
+<td><code>SNOWFLAKE_TOKEN</code></td>
+</tr>
+<tr class="even">
+<td>Groq</td>
+<td><code>&quot;groq&quot;</code></td>
+<td><code>GROQ_API_KEY</code></td>
+</tr>
+<tr class="odd">
+<td>Mistral</td>
+<td><code>&quot;mistral&quot;</code></td>
+<td><code>MISTRAL_API_KEY</code></td>
+</tr>
+<tr class="even">
+<td>Perplexity</td>
+<td><code>&quot;perplexity&quot;</code></td>
+<td><code>PERPLEXITY_API_KEY</code></td>
+</tr>
+<tr class="odd">
+<td>OpenRouter</td>
+<td><code>&quot;openrouter&quot;</code></td>
+<td><code>OPENROUTER_API_KEY</code></td>
+</tr>
+<tr class="even">
+<td>Ollama (local)</td>
+<td><code>&quot;ollama&quot;</code></td>
+<td><em>(none required)</em></td>
+</tr>
+<tr class="odd">
+<td>LM Studio (local)</td>
+<td><code>&quot;lmstudio&quot;</code></td>
+<td><em>(none required)</em></td>
+</tr>
+<tr class="even">
+<td>OpenAI-compatible</td>
+<td><code>&quot;openai_compatible&quot;</code></td>
+<td><code>OPENAI_API_KEY</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><em>The table covers providers commonly used. Ellmer supports
+additional providers - see the <a href="https://ellmer.tidyverse.org/index.html#providers">ellmer
+homepage</a> for the full and current list.</em></p>
+</blockquote>
+<p>Most providers require a <strong>model</strong> to be specified, but
+ellmer will select a default for most providers. If a default is used,
+ellmer will print it to the console on every codriver call. Specifying
+the model explicitly in <code>codriver_configure()</code> avoids
+this.</p>
+<hr />
+</div>
+<div id="authenticating" class="section level2">
+<h2>Authenticating</h2>
+<p>Before codriver can send requests to an LLM, it needs to prove to the
+provider that you are authorised to use it. How this works depends on
+the provider.</p>
+<p>The most common approach is an <strong>API key</strong>: a secret
+string that you obtain from your provider’s website and store on your
+machine. Ellmer looks for these keys in <strong>environment
+variables</strong> — named slots in your R session that hold
+configuration values. Each provider expects its key in a specific
+variable.</p>
+<p>The table above lists the environment variable names of commonly used
+providers. If your provider is not in the table or uses a different
+authentication mechanism, look at the help page for the corresponding
+ellmer constructor. For example, running
+<code>?ellmer::chat_openai</code> in R will tell you that OpenAI expects
+<code>OPENAI_API_KEY</code> and <code>?ellmer::chat_aws_bedrock</code>
+tells you about their specific authentication mechanism.</p>
+<p>The recommended way to set an environment variable permanently is to
+add it to your <code>.Renviron</code> file, which R reads automatically
+at startup. The example below shows how this is done.</p>
+<hr />
+</div>
+<div id="openai" class="section level2">
+<h2>OpenAI</h2>
+<p>OpenAI is the provider codriver has been most thoroughly tested with.
+GPT-4.1 and GPT-5.1 both produce clean, reliable completions in the
+RStudio workflow codriver is designed for.</p>
+<p>To get started, go to <a href="https://platform.openai.com">platform.openai.com</a>, sign in, and
+create an API key under <strong>API keys</strong>.</p>
+<p>Then store it in your <code>.Renviron</code>:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">file.edit</span>(<span class="st">&quot;~/.Renviron&quot;</span>)</span></code></pre></div>
+<p>Add:</p>
+<pre><code>OPENAI_API_KEY=your_key_here</code></pre>
+<p>Save the file, restart R and then configure codriver:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>codriver<span class="sc">::</span><span class="fu">codriver_configure</span>(<span class="st">&quot;openai&quot;</span>, <span class="at">model =</span> <span class="st">&quot;gpt-5.1&quot;</span>)</span></code></pre></div>
+<p>That is all that is needed. You’re now ready to <a href="start-using-codriver.html">start using codriver</a> in your
+RStudio workflow.</p>
+<hr />
+</div>
+<div id="openai-compatible-endpoint" class="section level2">
+<h2>OpenAI-compatible endpoint</h2>
+<p>Many organisations run their own LLM infrastructure that speaks the
+OpenAI API format. This includes local model servers, research clusters,
+and company proxies. For these, use <code>&quot;openai_compatible&quot;</code> as
+the provider name.</p>
+<p>Unlike named providers, an OpenAI-compatible endpoint has no
+defaults. You will need to know the <strong>base URL</strong> and
+<strong>model name</strong> from your organisation’s documentation or
+administrator.</p>
+<p>By default, <code>&quot;openai_compatible&quot;</code> reads the API key from
+the environment variable <code>OPENAI_API_KEY</code>. If you want to
+keep it separate from an actual OpenAI key, save a different key under a
+custom environment variable name and pass it explicitly:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>codriver<span class="sc">::</span><span class="fu">codriver_configure</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>  <span class="st">&quot;openai_compatible&quot;</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>  <span class="at">base_url    =</span> <span class="st">&quot;https://llmproxy.example.com/v1&quot;</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>  <span class="at">model       =</span> <span class="st">&quot;gpt-5.1&quot;</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>  <span class="at">credentials =</span> <span class="cf">function</span>() <span class="fu">Sys.getenv</span>(<span class="st">&quot;CUSTOM_API_KEY&quot;</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>)</span></code></pre></div>
+<blockquote>
+<p><em>Note: older ellmer documentation may show an <code>api_key</code>
+argument - this is deprecated in favour of <code>credentials</code> in
+combination with an environment variable, which avoids hardcoding keys
+in your code.</em></p>
+</blockquote>
+<hr />
+</div>
+<div id="provider-notes" class="section level2">
+<h2>Provider notes</h2>
+<p>Some notes on experience with providers:</p>
+<ul>
+<li><p><strong>OpenAI</strong> is the provider codriver has been most
+thoroughly tested with. GPT-4.1 and GPT-5.1 both produce clean, reliable
+completions in the RStudio workflow codriver is designed for.</p></li>
+<li><p><strong>Anthropic Claude</strong> models have also been tested
+quite extensively. Especially Claude Sonnet 4.5 has been confirmed to
+work well with codriver.</p></li>
+<li><p><strong>Google Gemini</strong> produces good results too. When
+using <em>free tier</em> be aware that some models are <em>very
+slow</em> and only allow for a few requests per day. Gemini 3.1 Flash
+Lite has been proven to be quick and works well with codriver.</p>
+<p>The Gemini Flash 2.5 (non-lite) series models use an internal
+reasoning process that can occasionally cause thought text to appear in
+completions. If you encounter this, try passing <code>api_args</code> to
+suppress thought output in the response:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>codriver<span class="sc">::</span><span class="fu">codriver_configure</span>(</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>  <span class="st">&quot;google_gemini&quot;</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>  <span class="at">model    =</span> <span class="st">&quot;gemini-2.5-flash&quot;</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>  <span class="at">api_args =</span> <span class="fu">list</span>(</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>    <span class="at">generationConfig =</span> <span class="fu">list</span>(</span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>      <span class="at">thinkingConfig =</span> <span class="fu">list</span>(<span class="at">includeThoughts =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>    )</span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>  )</span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a>)</span></code></pre></div></li>
+</ul>
+<hr />
+<p><strong>Next: <a href="start-using-codriver.html">Using
+codriver</a></strong></p>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
