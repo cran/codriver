@@ -1,18 +1,20 @@
 Package: codriver
 Title: Context-Aware AI Assistant for 'RStudio'
-Version: 1.0.0
+Version: 1.1.0
 Authors@R: person("S.A.", "van der Wulp", , "vdwulp@gmail.com", role = c("aut", "cre", "cph"))
 Description: A context-aware AI assistant for 'RStudio' that works directly in
     the source editor without switching context or opening a separate chat
     window. Reads the cursor position and selection to automatically choose the
-    right action - generate, complete, continue, edit, or comment. Supports
+    right action - generate, complete, continue, edit, or comment. Results are
+    presented as ghost text or an in-place diff suggestion. Supports
     configuration of multiple large language model providers and can be invoked
     via the keyboard shortcut or Addins menu.
 URL: https://vdwulp.github.io/codriver/
 BugReports: https://github.com/vdwulp/codriver/issues
 License: MIT + file LICENSE
 Encoding: UTF-8
-Config/roxygen2/version: 8.0.0
+Language: en-US
+Config/roxygen2/version: 8.1.0
 Config/roxygen2/markdown: TRUE
 Config/testthat/edition: 3
 VignetteBuilder: knitr
@@ -21,10 +23,11 @@ SystemRequirements: RStudio (>= 2026.04,
 Depends: R (>= 4.0.0)
 Imports: cli, ellmer (>= 0.3.0), jsonlite, rlang, rstudio.prefs (>=
         0.1.6), rstudioapi (>= 0.19.0)
-Suggests: testthat (>= 3.0.0), glue, knitr, rmarkdown, withr
+Suggests: testthat (>= 3.0.0), glue, knitr, rmarkdown, spelling,
+        tibble, withr
 NeedsCompilation: no
-Packaged: 2026-08-03 13:40:03 UTC; wulps
+Packaged: 2026-10-18 14:33:25 UTC; wulps
 Author: S.A. van der Wulp [aut, cre, cph]
 Maintainer: S.A. van der Wulp <vdwulp@gmail.com>
 Repository: CRAN
-Date/Publication: 2026-08-08 12:20:02 UTC
+Date/Publication: 2026-10-18 14:50:02 UTC

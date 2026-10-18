@@ -1,26 +1,38 @@
 # 🛣️ codriver → addin for RStudio
 <img src="man/figures/logo.png" align="right" width="139" style="float:right; width:139px;" class="pkgdown-hide">
 
-[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/vdwulp/codriver/blob/master/LICENSE.md)
-[![GitHub release](https://img.shields.io/github/v/release/vdwulp/codriver.svg)](https://github.com/vdwulp/codriver/releases/latest)
+<!-- badges: start -->
+[![CRAN status](https://www.r-pkg.org/badges/version/codriver)](https://CRAN.R-project.org/package=codriver)
+[![License: MIT](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://github.com/vdwulp/codriver/blob/master/LICENSE.md)
 [![R-CMD-check](https://github.com/vdwulp/codriver/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/vdwulp/codriver/actions/workflows/R-CMD-check.yaml)
+[![Codecov test coverage](https://codecov.io/gh/vdwulp/codriver/branch/main/graph/badge.svg)](https://app.codecov.io/gh/vdwulp/codriver/tree/main)
+<!-- badges: end -->
 
-*A context-aware AI assistant for RStudio that is literally at your fingertips.*
+*A context-aware AI assistant that sits at your cursor - no chat, no switching.*
 
-Codriver works directly in the RStudio source editor, without switching context
-or opening a separate chat window. When you press the keyboard shortcut,
-codriver reads your cursor position and selection to choose one of five modes —
-complete, generate, continue, edit, or comment — and presents suggestions
-in-place.
+Codriver brings AI code assistance directly to your cursor - no chat window, no
+context switching, no copy-pasting. Press `Ctrl+/` and codriver reads your
+cursor position and selection in the RStudio source editor to automatically
+choose the right action: generate new code from a comment, complete a line,
+continue from context, edit existing code, or suggest a comment. Results appear
+in-place as ghost text or a diff suggestion.
 
 ## 📋 Requirements
 
 - RStudio **≥ 2026.04**
-- **API access** to an LLM provider or local model server
+- **API access** to an LLM provider or local model server - see
+  [**Free API access**](https://vdwulp.github.io/codriver/articles/free-api-access.html)
+  for free options
 
 ## ✈️ Installation
 
-Run these R commands:
+Run this R command to install the latest release of codriver from [CRAN](https://CRAN.R-project.org/package=codriver):
+
+``` r
+install.packages("codriver")
+```
+
+Run these R commands to install the development version of codriver from [GitHub](https://github.com/vdwulp/codriver):
 
 ```r
 # Install remotes package if necessary
@@ -83,7 +95,7 @@ moving the cursor - or as an **edit suggestion** with green/red highlighting -
 accept with `TAB` or _Apply_, dismiss with `Escape` or _Discard_.
 
 See [Using codriver](https://vdwulp.github.io/codriver/articles/start-using-codriver.html)
-for a full walkthrough of all modes and result presentation.
+for a full walk-through of all modes and result presentation.
 
 ## 🔒 Data privacy
 
@@ -95,6 +107,23 @@ values. Be aware of this before using Codriver in projects with sensitive or
 proprietary information.
 
 Please review your provider's data policy before use.
+
+## 🔎 Diagnostics
+
+For diagnostic information about configuration and versions, run
+[`codriver_info()`](https://vdwulp.github.io/codriver/reference/codriver_info.html):
+
+```r
+codriver::codriver_info()
+```
+
+To inspect the system prompt, user prompt, and raw assistant response from the
+most recent codriver request, run
+[`codriver_last_request()`](https://vdwulp.github.io/codriver/reference/codriver_last_request.html):
+
+```r
+codriver::codriver_last_request()
+```
 
 ## 📄 License
 

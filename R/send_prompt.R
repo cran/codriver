@@ -10,12 +10,15 @@
 #' @noRd
 send_prompt <- function(context, action, prompt) {
 
-  # ── Initialise chat instance ─────────────────────────────────────────────────
+  # ── Set prompts in last request memory ──────────────────────────────────────
+  set_last_request(prompt$system, prompt$user)
+
+  # ── Initialise chat instance ────────────────────────────────────────────────
   cfg  <- get_config()           # presence checked in main
   args <- c(cfg$args, list(system_prompt = prompt$system))
   chat <- do.call(ellmer::chat, args)
 
-  # ── Call ellmer chat with retry on transient errors ──────────────────────────
+  # ── Call ellmer chat with retry on transient errors ─────────────────────────
   # Retryable: HTTP 500/502/503/504 and APIConnectionError
   # Waits: 0.25s, 0.5s, 1s before attempts 2, 3, 4
   attempt     <- 0L
@@ -46,6 +49,9 @@ send_prompt <- function(context, action, prompt) {
 
     if (!is.null(result)) break
   }
+
+  # ── Set raw response in last request memory ─────────────────────────────────
+  set_last_request(assistant_response = result)
 
   # ── Post-processing ─ General ───────────────────────────────────────────────
   # Strip fenced code blocks if the entire response is wrapped in one
@@ -92,5 +98,5 @@ send_prompt <- function(context, action, prompt) {
     }
   }
 
-  return(result)
+  result
 }

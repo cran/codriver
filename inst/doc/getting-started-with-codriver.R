@@ -6,6 +6,9 @@ knitr::opts_chunk$set(
 knitr::opts_chunk$set(eval = FALSE)
 
 ## -----------------------------------------------------------------------------
+# # Install codriver
+# install.packages("codriver")
+# 
 # # OpenAI
 # codriver::codriver_configure("openai", model = "gpt-5.1")
 # 
